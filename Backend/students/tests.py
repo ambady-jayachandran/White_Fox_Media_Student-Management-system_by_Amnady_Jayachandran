@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.core.management import call_command
 from django.test import TestCase
 from django.urls import reverse
 from rest_framework import status
@@ -151,3 +152,21 @@ class AuthAPITests(TestCase):
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertTrue(response.data["success"])
+
+
+class SeedDemoDataCommandTests(TestCase):
+    def test_creates_admin_and_ten_students(self):
+        call_command("seed_demo_data")
+
+        admin = User.objects.get(username="Admin")
+        self.assertTrue(admin.check_password("Admin123"))
+        self.assertTrue(admin.is_staff)
+        self.assertTrue(admin.is_superuser)
+        self.assertEqual(Student.objects.count(), 10)
+
+    def test_can_run_more_than_once(self):
+        call_command("seed_demo_data")
+        call_command("seed_demo_data")
+
+        self.assertEqual(User.objects.filter(username="Admin").count(), 1)
+        self.assertEqual(Student.objects.count(), 10)
