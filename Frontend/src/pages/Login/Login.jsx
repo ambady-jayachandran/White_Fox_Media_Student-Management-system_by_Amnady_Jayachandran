@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { EyeIcon, EyeSlashIcon, LockClosedIcon } from "@heroicons/react/24/outline";
 import { toast } from "react-toastify";
 import { useAuth } from "../../context/AuthContext.jsx";
@@ -39,16 +39,16 @@ export default function Login() {
   };
 
   return (
-    <main className="grid min-h-screen place-items-center bg-gradient-to-br from-brand-100 via-sky-50 to-brand-200 px-4 py-10">
-      <section className="w-full max-w-md rounded-md border border-brand-100 bg-white/85 p-8 shadow-soft backdrop-blur">
+    <main className="grid min-h-screen place-items-center bg-[linear-gradient(135deg,#DDE6ED_0%,#c8d6df_58%,#9DB2BF_100%)] px-4 py-10">
+      <section className="w-full max-w-md rounded-md border border-brand-200 bg-white p-6 shadow-soft sm:p-8">
         <div className="mb-8">
           <BrandMark className="mb-6" />
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-foxgreen-50 px-3 py-1 text-xs font-semibold text-foxgreen-600 ring-1 ring-foxgreen-100">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700 ring-1 ring-brand-200">
             <LockClosedIcon className="h-4 w-4" />
             Secure Admin Access
           </div>
           <h1 className="text-2xl font-semibold text-ink">Sign in</h1>
-          <p className="mt-2 text-sm text-slate-600">Access the student management console.</p>
+          <p className="mt-2 text-sm text-brand-500">Access the student management console.</p>
         </div>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <label className="block">
@@ -68,7 +68,7 @@ export default function Login() {
               <button
                 type="button"
                 onClick={() => setShowPassword((value) => !value)}
-                className="absolute inset-y-0 right-0 mt-1 grid w-11 place-items-center text-slate-500 hover:text-ink"
+                className="absolute inset-y-0 right-0 mt-1 grid w-11 place-items-center text-brand-500 hover:text-brand-700"
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? <EyeSlashIcon className="h-5 w-5" /> : <EyeIcon className="h-5 w-5" />}
@@ -80,12 +80,6 @@ export default function Login() {
             {isLoading ? "Signing in..." : "Login"}
           </button>
         </form>
-        <div className="mt-6 border-t border-slate-200 pt-5 text-center">
-          <p className="text-sm text-slate-600">Need an admin account?</p>
-          <Link to="/register" className="btn-secondary mt-3 w-full">
-            Create account
-          </Link>
-        </div>
       </section>
     </main>
   );

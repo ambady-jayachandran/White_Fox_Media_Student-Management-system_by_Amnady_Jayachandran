@@ -10,6 +10,7 @@ const defaultValues = {
   date_of_birth: "",
   gender: "Male",
   address: "",
+  is_active: true,
 };
 
 export default function StudentForm({ initialValues, onSubmit, isSubmitting = false, serverErrors = {} }) {
@@ -33,7 +34,7 @@ export default function StudentForm({ initialValues, onSubmit, isSubmitting = fa
           <span className="form-label">First Name</span>
           <input
             className="form-input"
-            {...register("first_name", { required: "First name is required", minLength: { value: 2, message: "Use at least 2 characters" } })}
+            {...register("first_name", { required: "First name is required", minLength: { value: 1, message: "Use at least 1 character" } })}
           />
           {fieldError("first_name") && <p className="mt-1 text-sm text-red-600">{fieldError("first_name")}</p>}
         </label>
@@ -41,7 +42,7 @@ export default function StudentForm({ initialValues, onSubmit, isSubmitting = fa
           <span className="form-label">Last Name</span>
           <input
             className="form-input"
-            {...register("last_name", { required: "Last name is required", minLength: { value: 2, message: "Use at least 2 characters" } })}
+            {...register("last_name", { required: "Last name is required", minLength: { value: 1, message: "Use at least 1 character" } })}
           />
           {fieldError("last_name") && <p className="mt-1 text-sm text-red-600">{fieldError("last_name")}</p>}
         </label>
@@ -81,6 +82,13 @@ export default function StudentForm({ initialValues, onSubmit, isSubmitting = fa
             <option value="Other">Other</option>
           </select>
           {fieldError("gender") && <p className="mt-1 text-sm text-red-600">{fieldError("gender")}</p>}
+        </label>
+        <label className="flex items-center justify-between gap-4 rounded-md border border-brand-200 bg-brand-50/70 px-4 py-3">
+          <span>
+            <span className="block text-sm font-medium text-brand-700">Student Status</span>
+            <span className="mt-1 block text-xs text-brand-500">Mark whether this student is active in the console.</span>
+          </span>
+          <input type="checkbox" className="h-5 w-5 rounded border-brand-200 bg-white text-brand-700 focus:ring-brand-500" {...register("is_active")} />
         </label>
       </div>
       <label className="block">

@@ -29,9 +29,9 @@ export default function AddStudent() {
     <div className="mx-auto max-w-4xl space-y-5">
       <div>
         <h2 className="text-2xl font-semibold text-ink">Add Student</h2>
-        <p className="mt-1 text-sm text-slate-600">Create a new student record with validated contact details.</p>
+        <p className="mt-1 text-sm text-brand-500">Create a new student record with validated contact details.</p>
       </div>
-      <section className="rounded-md border border-brand-100 bg-white/80 p-5 shadow-sm backdrop-blur">
+      <section className="rounded-md border border-brand-200 bg-white p-4 shadow-sm sm:p-5">
         <StudentForm onSubmit={onSubmit} isSubmitting={isSubmitting} serverErrors={serverErrors} />
       </section>
     </div>

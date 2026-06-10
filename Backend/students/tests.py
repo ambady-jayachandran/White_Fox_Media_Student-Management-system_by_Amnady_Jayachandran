@@ -34,16 +34,18 @@ class StudentSerializerTests(TestCase):
                 "date_of_birth": "2006-04-12",
                 "gender": "Female",
                 "address": "Boston",
+                "is_active": False,
             }
         )
 
         self.assertTrue(serializer.is_valid(), serializer.errors)
+        self.assertFalse(serializer.validated_data["is_active"])
 
-    def test_rejects_short_first_name(self):
+    def test_accepts_one_character_names(self):
         serializer = StudentSerializer(
             data={
                 "first_name": "J",
-                "last_name": "Doe",
+                "last_name": "D",
                 "email": "short@example.com",
                 "phone": "9876543210",
                 "date_of_birth": "2006-04-12",
@@ -52,8 +54,7 @@ class StudentSerializerTests(TestCase):
             }
         )
 
-        self.assertFalse(serializer.is_valid())
-        self.assertIn("first_name", serializer.errors)
+        self.assertTrue(serializer.is_valid(), serializer.errors)
 
 
 class StudentAPITests(TestCase):
@@ -75,6 +76,7 @@ class StudentAPITests(TestCase):
                 "date_of_birth": "2005-08-15",
                 "gender": "Male",
                 "address": "New York",
+                "is_active": False,
             },
             format="json",
         )
@@ -85,6 +87,10 @@ class StudentAPITests(TestCase):
         list_response = self.client.get(reverse("student_list_create"), {"search": "john"})
         self.assertEqual(list_response.status_code, status.HTTP_200_OK)
         self.assertEqual(list_response.data["data"]["count"], 1)
+
+        inactive_response = self.client.get(reverse("student_list_create"), {"status": "inactive", "ordering": "is_active"})
+        self.assertEqual(inactive_response.status_code, status.HTTP_200_OK)
+        self.assertEqual(inactive_response.data["data"]["count"], 1)
 
     def test_requires_authentication(self):
         self.client.credentials()

@@ -7,7 +7,7 @@ export default function AdminLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-brand-100 via-brand-50 to-sky-100">
+    <div className="min-h-screen bg-[linear-gradient(135deg,#DDE6ED_0%,#c8d6df_58%,#9DB2BF_100%)]">
       <div className="flex min-h-screen">
         <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
         <div className="min-w-0 flex-1">

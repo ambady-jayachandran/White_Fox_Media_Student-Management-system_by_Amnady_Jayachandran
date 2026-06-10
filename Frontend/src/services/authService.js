@@ -5,11 +5,6 @@ export const loginRequest = async (credentials) => {
   return data;
 };
 
-export const registerRequest = async (payload) => {
-  const { data } = await api.post("/register", payload);
-  return data;
-};
-
 export const logoutRequest = async (refresh) => {
   const { data } = await api.post("/logout", { refresh });
   return data;

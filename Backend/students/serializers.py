@@ -91,17 +91,18 @@ class StudentSerializer(serializers.ModelSerializer):
             "date_of_birth",
             "gender",
             "address",
+            "is_active",
             "created_at",
             "updated_at",
         ]
         read_only_fields = ("id", "created_at", "updated_at")
 
     def validate_first_name(self, value):
-        if len(value.strip()) < 2:
-            raise serializers.ValidationError("First name must be at least 2 characters.")
+        if len(value.strip()) < 1:
+            raise serializers.ValidationError("First name must be at least 1 character.")
         return value.strip()
 
     def validate_last_name(self, value):
-        if len(value.strip()) < 2:
-            raise serializers.ValidationError("Last name must be at least 2 characters.")
+        if len(value.strip()) < 1:
+            raise serializers.ValidationError("Last name must be at least 1 character.")
         return value.strip()

@@ -20,6 +20,11 @@ export const updateStudent = async (id, payload) => {
   return data;
 };
 
+export const updateStudentStatus = async (id, isActive) => {
+  const { data } = await api.patch(`/students/${id}`, { is_active: isActive });
+  return data;
+};
+
 export const deleteStudent = async (id) => {
   const { data } = await api.delete(`/students/${id}`);
   return data;

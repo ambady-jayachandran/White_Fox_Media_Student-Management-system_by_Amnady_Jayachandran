@@ -36,25 +36,25 @@ export default function Dashboard() {
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-semibold text-ink">Dashboard</h2>
-        <p className="mt-1 text-sm text-slate-600">Monitor enrollment records and jump into common workflows.</p>
+        <p className="mt-1 text-sm text-brand-500">Monitor enrollment records and jump into common workflows.</p>
       </div>
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {cards.map(({ label, value, icon, to }) => (
-          <Link key={label} to={to} className="rounded-md border border-brand-100 bg-white/80 p-5 shadow-sm backdrop-blur transition hover:border-brand-200 hover:bg-white/95 hover:shadow-soft">
+          <Link key={label} to={to} className="rounded-md border border-brand-200 bg-white p-5 shadow-sm transition hover:border-brand-500 hover:shadow-soft">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-500">{label}</p>
+                <p className="text-sm font-medium text-brand-500">{label}</p>
                 <p className="mt-2 text-3xl font-semibold text-ink">{value}</p>
               </div>
-              <div className="grid h-12 w-12 place-items-center rounded-md bg-brand-50 text-brand-700 ring-1 ring-brand-100">
+              <div className="grid h-12 w-12 place-items-center rounded-md bg-brand-50 text-brand-700 ring-1 ring-brand-200">
                 {createElement(icon, { className: "h-7 w-7" })}
               </div>
             </div>
           </Link>
         ))}
       </div>
-      <section className="rounded-md border border-brand-100 bg-white/80 shadow-sm backdrop-blur">
-        <div className="border-b border-brand-100 px-5 py-4">
+      <section className="rounded-md border border-brand-200 bg-white shadow-sm">
+        <div className="border-b border-brand-200 px-5 py-4">
           <h3 className="text-lg font-semibold text-ink">Recent Students</h3>
         </div>
         <div className="divide-y divide-slate-100">
@@ -65,13 +65,13 @@ export default function Dashboard() {
                   <p className="font-medium text-ink">
                     {student.first_name} {student.last_name}
                   </p>
-                  <p className="text-sm text-slate-500">{student.email}</p>
+                  <p className="text-sm text-brand-500">{student.email}</p>
                 </div>
-                <span className="w-fit rounded-full bg-foxgreen-50 px-3 py-1 text-xs font-semibold text-foxgreen-600 ring-1 ring-foxgreen-100">{student.gender}</span>
+                <span className="w-fit rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700 ring-1 ring-brand-200">{student.gender}</span>
               </div>
             ))
           ) : (
-            <p className="px-5 py-8 text-sm text-slate-500">{isLoading ? "Loading..." : "No recent students yet."}</p>
+            <p className="px-5 py-8 text-sm text-brand-500">{isLoading ? "Loading..." : "No recent students yet."}</p>
           )}
         </div>
       </section>

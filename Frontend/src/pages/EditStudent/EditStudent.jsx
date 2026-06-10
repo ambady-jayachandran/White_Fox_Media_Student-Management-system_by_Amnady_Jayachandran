@@ -47,10 +47,10 @@ export default function EditStudent() {
     <div className="mx-auto max-w-4xl space-y-5">
       <div>
         <h2 className="text-2xl font-semibold text-ink">Edit Student</h2>
-        <p className="mt-1 text-sm text-slate-600">Update the selected student record.</p>
+        <p className="mt-1 text-sm text-brand-500">Update the selected student record.</p>
       </div>
-      <section className="rounded-md border border-brand-100 bg-white/80 p-5 shadow-sm backdrop-blur">
-        {isLoading ? <p className="text-sm text-slate-500">Loading student...</p> : <StudentForm initialValues={student} onSubmit={onSubmit} isSubmitting={isSubmitting} serverErrors={serverErrors} />}
+      <section className="rounded-md border border-brand-200 bg-white p-4 shadow-sm sm:p-5">
+        {isLoading ? <p className="text-sm text-brand-500">Loading student...</p> : <StudentForm initialValues={student} onSubmit={onSubmit} isSubmitting={isSubmitting} serverErrors={serverErrors} />}
       </section>
     </div>
   );

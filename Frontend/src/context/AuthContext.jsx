@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useCallback, useContext, useMemo, useState } from "react";
-import { loginRequest, logoutRequest, registerRequest } from "../services/authService";
+import { loginRequest, logoutRequest } from "../services/authService";
 
 const AuthContext = createContext(null);
 
@@ -33,15 +33,6 @@ export function AuthProvider({ children }) {
     [persistSession],
   );
 
-  const register = useCallback(
-    async (payload) => {
-      const response = await registerRequest(payload);
-      persistSession(response);
-      return response;
-    },
-    [persistSession],
-  );
-
   const logout = useCallback(async () => {
     const refresh = localStorage.getItem("refreshToken");
     if (refresh) {
@@ -65,9 +56,8 @@ export function AuthProvider({ children }) {
       isAuthenticated: Boolean(accessToken),
       login,
       logout,
-      register,
     }),
-    [user, accessToken, login, logout, register],
+    [user, accessToken, login, logout],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

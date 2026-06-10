@@ -8,8 +8,8 @@ class Student(models.Model):
         FEMALE = "Female", "Female"
         OTHER = "Other", "Other"
 
-    first_name = models.CharField(max_length=100, validators=[MinLengthValidator(2)])
-    last_name = models.CharField(max_length=100, validators=[MinLengthValidator(2)])
+    first_name = models.CharField(max_length=100, validators=[MinLengthValidator(1)])
+    last_name = models.CharField(max_length=100, validators=[MinLengthValidator(1)])
     email = models.EmailField(unique=True)
     phone = models.CharField(
         max_length=15,
@@ -23,6 +23,7 @@ class Student(models.Model):
     date_of_birth = models.DateField()
     gender = models.CharField(max_length=10, choices=Gender.choices)
     address = models.TextField()
+    is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -32,6 +33,7 @@ class Student(models.Model):
             models.Index(fields=["first_name"]),
             models.Index(fields=["last_name"]),
             models.Index(fields=["email"]),
+            models.Index(fields=["is_active"]),
         ]
 
     def __str__(self):

@@ -1,7 +1,7 @@
 export default function BrandMark({ compact = false, className = "" }) {
   return (
     <div className={`flex items-center gap-3 ${className}`}>
-      <div className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-ink text-white shadow-soft ring-4 ring-white">
+      <div className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-brand-700 text-white shadow-soft ring-4 ring-brand-200/40">
         <svg viewBox="0 0 48 48" className="h-7 w-7" aria-hidden="true">
           <path
             fill="currentColor"
@@ -20,8 +20,8 @@ export default function BrandMark({ compact = false, className = "" }) {
       </div>
       {!compact && (
         <div className="leading-tight">
-          <p className="text-sm font-semibold text-ink">White Fox Media</p>
-          <p className="text-xs text-slate-500">Student Console</p>
+          <p className="text-sm font-semibold text-current">White Fox Media</p>
+          <p className="text-xs text-current/70">Student Console</p>
         </div>
       )}
     </div>

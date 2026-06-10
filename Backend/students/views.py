@@ -65,8 +65,23 @@ class StudentListCreateView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
     filter_backends = [SearchFilter, OrderingFilter]
     search_fields = ["first_name", "last_name", "email"]
-    ordering_fields = ["id", "first_name", "last_name", "email", "date_of_birth", "gender", "created_at"]
+    ordering_fields = ["id", "first_name", "last_name", "email", "date_of_birth", "gender", "is_active", "created_at"]
     ordering = ["-created_at"]
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        status_filter = self.request.query_params.get("status")
+        gender_filter = self.request.query_params.get("gender")
+
+        if status_filter == "active":
+            queryset = queryset.filter(is_active=True)
+        elif status_filter == "inactive":
+            queryset = queryset.filter(is_active=False)
+
+        if gender_filter in Student.Gender.values:
+            queryset = queryset.filter(gender=gender_filter)
+
+        return queryset
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
