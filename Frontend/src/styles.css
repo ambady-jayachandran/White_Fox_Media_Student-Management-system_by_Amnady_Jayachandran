@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: #071827;
+  background: #eaf5ff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(circle at 12% 12%, rgba(29, 126, 216, 0.22), transparent 30rem),
+    radial-gradient(circle at 88% 4%, rgba(36, 168, 102, 0.1), transparent 24rem),
+    linear-gradient(135deg, #f5fbff 0%, #dcefff 45%, #eef8ff 100%);
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  outline-color: #1d7ed8;
+}
+
+.form-label {
+  @apply text-sm font-medium text-slate-700;
+}
+
+.form-input {
+  @apply mt-1 w-full rounded-md border-brand-100 bg-white/90 text-sm shadow-sm focus:border-brand-500 focus:ring-brand-500;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-md bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-soft transition hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-60;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 rounded-md border border-brand-100 bg-brand-50 px-3 py-2 text-sm font-semibold text-brand-700 shadow-sm transition hover:border-brand-200 hover:bg-brand-100;
+}
+
+.btn-danger {
+  @apply inline-flex items-center justify-center gap-2 rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-red-700;
+}
